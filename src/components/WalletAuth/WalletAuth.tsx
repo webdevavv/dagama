@@ -16,9 +16,8 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
   const jwt = setJWT((state) => state.jwtToken);
 
   const router = useRouter();
-  const path = `${
-    process.env.NEXT_PUBLIC_REQUEST_SERVER_PATH as string
-  }/assets/components/dga/conector_jwt.php`;
+  const path =
+    "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCode(code + e.target.value);

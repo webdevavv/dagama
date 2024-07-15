@@ -17,9 +17,8 @@ const handleClipBoardPath = (text: string) => {
   );
 };
 
-const path: string = `${
-  process.env.NEXT_PUBLIC_REQUEST_SERVER_PATH as string
-}/assets/components/dga/conector_jwt.php`;
+const path =
+  "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
 
 const LeaderBoard: NextPage = () => {
   const { address } = useAccount();

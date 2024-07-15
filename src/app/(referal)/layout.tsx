@@ -48,9 +48,8 @@ const client = new QueryClient({
     },
   },
 });
-const path = `${
-  process.env.NEXT_PUBLIC_REQUEST_SERVER_PATH as string
-}/assets/components/dga/conector_jwt.php`;
+const path =
+  "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const authStatus = setAuthenticated((state) => state.authenticated);

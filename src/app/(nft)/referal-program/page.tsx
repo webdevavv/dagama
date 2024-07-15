@@ -9,9 +9,8 @@ import ExportedImage from "next-image-export-optimizer";
 import LeaderBoard from "../../../components/LeaderBoard/LeaderBoard";
 import { setData } from "../../../stores/userData-store";
 
-const path: string = `${
-  process.env.NEXT_PUBLIC_REQUEST_SERVER_PATH as string
-}/assets/components/dga/conector_jwt.php`;
+const path =
+  "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
 
 const handleClipBoardPath = (text: string | undefined) => {
   if (text) {
