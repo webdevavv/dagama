@@ -1,0 +1,39 @@
+{
+  "name": "simple-web3",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next-image-export-optimizer",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@rainbow-me/rainbowkit": "^2.1.2",
+    "@rainbow-me/rainbowkit-siwe-next-auth": "^0.4.1",
+    "@tanstack/react-query": "^5.51.1",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "ethers": "^5.7.2",
+    "next": "^14.2.3",
+    "next-image-export-optimizer": "^1.14.1",
+    "pino-pretty": "^11.2.1",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "sass": "^1.77.8",
+    "siwe": "^2.3.2",
+    "viem": "2.9.31",
+    "wagmi": "^2.9.2",
+    "web3": "^4.10.0",
+    "web3-eth-personal": "^4.0.8",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.3",
+    "@types/react": "^18.3.0",
+    "encoding": "^0.1.13",
+    "eslint": "^8.15.0",
+    "eslint-config-next": "^14.2.3",
+    "typescript": "5.4.2"
+  }
+}

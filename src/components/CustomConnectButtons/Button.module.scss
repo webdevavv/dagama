@@ -1,0 +1,56 @@
+.headerBtnStatus{
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #9CA4AE;
+  border-radius: 6px;
+  border: 1px solid #45505D;
+  cursor: pointer;
+  padding: 8px 20px;
+  background-color: transparent;
+}
+
+.buttonWrap{
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  gap: 10px;
+  border: 1px solid #45505D;
+  padding: 8px 20px;
+}
+.buttonWrap .line{
+  width: 1px;
+  height: 24px;
+  background-color: #45505D;
+}
+.chainName{
+  font-weight: 700;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  color: #00F87A;
+  text-transform: uppercase;
+  background-color: transparent;
+}
+.accountName{
+  position: relative;
+  color: #9CA4AE;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  padding-right: 20px;
+  background-color: transparent;
+  &::before{
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 7px;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.27877 0.452515H5.12544H1.38544C0.745441 0.452515 0.425441 1.22585 0.878774 1.67918L4.33211 5.13251C4.88544 5.68585 5.78544 5.68585 6.33877 5.13251L7.65211 3.81918L9.79211 1.67918C10.2388 1.22585 9.91877 0.452515 9.27877 0.452515Z' fill='%2300F87A'/%3E%3C/svg%3E%0A");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 5px;
+  }
+}
