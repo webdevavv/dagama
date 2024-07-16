@@ -62,19 +62,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   const authenticationAdapter = createAuthenticationAdapter({
     getNonce: async () => {
-      // const response = await axios.post(
-      //   "https://devmy.dagama.world/assets/components/dga/conector_jwt.php",
-      //   {
-      //     request: "login",
-      //     address: address,
-      //   },
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
-      // return await response.data;
       await new Promise((r) => setTimeout(r, 100));
       const nonce = "mockNonce"; // mock nonce
       return nonce;

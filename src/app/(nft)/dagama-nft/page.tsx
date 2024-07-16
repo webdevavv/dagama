@@ -5,6 +5,7 @@ import { ChangeEvent, useState } from "react";
 import styles from "../../../styles/Home.module.scss";
 import Countdown from "../../../components/Countdown";
 import ExportedImage from "next-image-export-optimizer";
+// import Image from "next/image";
 
 const Home: NextPage = () => {
   const [nftCount, setNFTCount] = useState<number>(1);
@@ -20,29 +21,37 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <main className={styles.main}>
         <div className="container">
-          <div className="row">
+          <div className="row gy-4">
             <div className="col-12 col-md-12 d-flex align-self-center">
-              <div className="minting--details block-bg d-flex flex-column align-items-center gap-5">
+              <div className="minting--details block-bg d-flex flex-column align-items-center gap-4 gap-sm-5">
                 <h1 className="text-center">
                   Mint your first NFT <span>now</span>
                 </h1>
                 <ExportedImage
-                  src="/index.png"
+                  src="/img/index.png"
                   width={384}
                   height={280}
                   className={styles.mainImg}
                   alt="Mint your first NFT now"
                 />
                 <div className="counter--slider">
-                  <input
-                    id="counter"
-                    type="range"
-                    min={1}
-                    max={5}
-                    step={1}
-                    value={nftCount}
-                    onChange={handleInputChange}
-                  />
+                  <div className={styles.inputWrapper}>
+                    <input
+                      id="counter"
+                      type="range"
+                      min={1}
+                      max={5}
+                      step={1}
+                      className={styles.rangeInput}
+                      value={nftCount}
+                      onChange={handleInputChange}
+                    />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
                   <label htmlFor="counter">
                     {nftCount} NFT - Total: {totalPrice.toFixed(3)} ARB + GAS{" "}
                   </label>

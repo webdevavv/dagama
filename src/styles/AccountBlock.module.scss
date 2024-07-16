@@ -3,6 +3,16 @@
   flex-direction: column;
   gap: 25px;
 }
+.userBlock__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  @media (max-width: 576px) {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+  }
+}
 .userBlock {
   display: flex;
   align-items: center;
@@ -12,6 +22,10 @@
     width: 86px;
     background-color: #9ca4ae;
     border-radius: 50%;
+    @media (max-width: 768px) {
+      width: 50px;
+      height: 50px;
+    }
   }
   &__info {
     display: flex;
@@ -23,6 +37,9 @@
       color: #fff;
       font-size: 24px;
       font-weight: 700;
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
       span {
         border-radius: 8px;
         background: #00f87a;
@@ -31,6 +48,9 @@
         font-size: 16px;
         font-weight: 700;
         text-transform: uppercase;
+        @media (max-width: 768px) {
+          font-size: 14px;
+        }
         &.not {
           background-color: #f80000;
         }
@@ -40,6 +60,25 @@
       color: #9ca4ae;
       font-size: 14px;
       font-weight: 400;
+      @media (max-width: 768px) {
+        font-size: 12px;
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    display: contents;
+    &__info {
+      grid-column: 1/3;
+      grid-row: 2/3;
+      &_name {
+        font-size: 14px;
+        span {
+          font-size: 10px;
+        }
+      }
+      &_address {
+        font-size: 10px;
+      }
     }
   }
 }
@@ -53,12 +92,25 @@
     font-size: 40px;
     font-weight: 700;
     line-height: 110%; /* 44px */
+    @media (max-width: 768px) {
+      font-size: 30px;
+    }
+    @media (max-width: 576px) {
+      font-size: 24px;
+      text-align: left;
+    }
   }
   &__label {
     color: #9ca4ae;
     text-align: right;
     font-size: 14px;
     font-weight: 400;
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+    @media (max-width: 576px) {
+      text-align: left;
+    }
   }
 }
 .userRef {
@@ -72,11 +124,20 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
+    @media (max-width: 576px) {
+      gap: 7px;
+    }
     h1 {
       color: #fff;
       font-size: 60px;
       font-weight: 700;
       line-height: 110%; /* 66px */
+      @media (max-width: 768px) {
+        font-size: 36px;
+      }
+      @media (max-width: 576px) {
+        font-size: 24px;
+      }
       span {
         color: #00f87a;
         font-size: inherit;
@@ -88,6 +149,12 @@
       color: #fff;
       font-size: 40px;
       font-weight: 700;
+      @media (max-width: 768px) {
+        font-size: 30px;
+      }
+      @media (max-width: 576px) {
+        font-size: 20px;
+      }
     }
     p {
       max-width: 700px;
@@ -96,6 +163,12 @@
       font-size: 20px;
       font-weight: 400;
       line-height: 150%; /* 30px */
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
     }
   }
   &__table {
@@ -111,6 +184,10 @@
       justify-content: space-between;
       align-items: center;
     }
+    @media (max-width: 576px) {
+      min-width: 100%;
+      width: 100%;
+    }
     &_head {
       padding-bottom: 15px;
       border-bottom: 1px solid #45505d;
@@ -118,6 +195,9 @@
         color: #fff;
         font-size: 16px;
         font-weight: 700;
+        @media (max-width: 768px) {
+          font-size: 14px;
+        }
       }
       .userRef__table_pointCount {
         color: #00f87a;
@@ -129,6 +209,12 @@
         color: #9ca4ae;
         font-size: 18px;
         font-weight: 400;
+        @media (max-width: 768px) {
+          font-size: 14px;
+        }
+        @media (max-width: 576px) {
+          display: none;
+        }
       }
       &_value {
         flex: 1;
@@ -140,6 +226,14 @@
         color: #fff;
         font-size: 24px;
         font-weight: 600;
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
+        @media (max-width: 576px) {
+          justify-content: start;
+          text-align: left;
+          font-size: 12px;
+        }
       }
       &_button {
         background-color: transparent;
@@ -153,14 +247,18 @@
         background-position: center;
         cursor: pointer;
       }
+      @media (max-width: 576px) {
+        gap: 10px;
+      }
     }
   }
 }
 
 .connectors {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 15px;
   .line {
     height: 1px;
     width: 100%;
@@ -170,6 +268,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 230px;
+    width: 100%;
   }
   .connector_done {
     display: flex;

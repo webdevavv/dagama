@@ -74,23 +74,6 @@ const Header: NextPage = () => {
             </defs>
           </svg>
         </span>
-        <nav className={styles.nav}>
-          <a href="#">
-            <p>Home</p>
-          </a>
-          <a href="#">
-            <p>Product</p>
-          </a>
-          <a href="#">
-            <p>About US</p>
-          </a>
-          <a href="#">
-            <p>GrantS</p>
-          </a>
-          <a href="#">
-            <p>Careers</p>
-          </a>
-        </nav>
         <div className="d-flex align-self-center align-items-center justify-content-end">
           <HeaderConnectButton />
         </div>

@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
   // output: "export",
   // images: {
   //   loader: "custom",
@@ -9,7 +10,7 @@ const nextConfig = {
   // },
   // transpilePackages: ["next-image-export-optimizer"],
   // env: {
-  //   nextImageExportOptimizer_imageFolderPath: "public",
+  //   nextImageExportOptimizer_imageFolderPath: "public/img",
   //   nextImageExportOptimizer_exportFolderPath: "out",
   //   nextImageExportOptimizer_quality: "80",
   //   nextImageExportOptimizer_storePicturesInWEBP: "true",

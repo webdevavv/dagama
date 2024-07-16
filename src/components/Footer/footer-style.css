@@ -375,7 +375,7 @@
 
 .footer-container {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -906,15 +906,14 @@
 }
 
 .container-5 {
-  grid-column-gap: 80px;
-  justify-content: flex-start;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 30px;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1280px;
   padding-top: 80px;
   padding-bottom: 80px;
-  text-decoration: none;
-  display: flex;
 }
 
 .column-5 {
@@ -5378,7 +5377,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  max-width: 265px;
   min-height: 112px;
   padding: 20px;
   text-decoration: none;
@@ -10559,10 +10557,6 @@
     height: 41%;
     font-size: 32px;
     line-height: 40px;
-  }
-
-  .connector {
-    max-width: 274px;
   }
 
   .span-2 {
