@@ -1,47 +1,56 @@
-.headerBtnStatus{
+.headerBtnStatus {
   font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
-  color: #9CA4AE;
+  color: #9ca4ae;
   border-radius: 6px;
-  border: 1px solid #45505D;
+  border: 1px solid #45505d;
   cursor: pointer;
   padding: 8px 20px;
   background-color: transparent;
 }
 
-.buttonWrap{
+.buttonWrap {
   display: flex;
   align-items: center;
   border-radius: 6px;
   gap: 10px;
-  border: 1px solid #45505D;
+  border: 1px solid #45505d;
   padding: 8px 20px;
+  @media (max-width: 576px) {
+    padding: 6px 16px;
+  }
 }
-.buttonWrap .line{
+.buttonWrap .line {
   width: 1px;
   height: 24px;
-  background-color: #45505D;
+  background-color: #45505d;
+  @media (max-width: 576px) {
+    display: none;
+  }
 }
-.chainName{
+.chainName {
   font-weight: 700;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  color: #00F87A;
+  color: #00f87a;
   text-transform: uppercase;
   background-color: transparent;
+  @media (max-width: 576px) {
+    display: none !important;
+  }
 }
-.accountName{
+.accountName {
   position: relative;
-  color: #9CA4AE;
+  color: #9ca4ae;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   padding-right: 20px;
   background-color: transparent;
-  &::before{
+  &::before {
     content: "";
     position: absolute;
     right: 0;
@@ -52,5 +61,8 @@
     background-repeat: no-repeat;
     width: 10px;
     height: 5px;
+  }
+  @media (max-width: 576px) {
+    padding-right: 12px;
   }
 }

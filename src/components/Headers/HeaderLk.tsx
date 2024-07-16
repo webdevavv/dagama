@@ -11,7 +11,7 @@ const Header: NextPage = () => {
   return (
     <header>
       <div className="d-flex align-items-center flex-nowrap justify-content-between">
-        <span className="navbar-brand d-flex align-items-center">
+        <span className="d-flex align-items-center">
           <svg
             width="104"
             height="30"

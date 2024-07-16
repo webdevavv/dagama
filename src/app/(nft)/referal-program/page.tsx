@@ -7,7 +7,7 @@ import { useAccount } from "wagmi";
 import { setJWT } from "../../../stores/setJWT-store";
 import ExportedImage from "next-image-export-optimizer";
 import LeaderBoard from "../../../components/LeaderBoard/LeaderBoard";
-import { setData } from "../../../stores/userData-store";
+import { setAddressStore } from "../../../stores/address-store";
 
 const path =
   "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
@@ -26,10 +26,8 @@ const handleClipBoardPath = (text: string | undefined) => {
 };
 
 const AccountBlock: NextPage = () => {
-  const { address } = useAccount();
   const jwt: string = setJWT((state) => state.jwtToken);
-  const setDatabase = setData((state) => state.setData);
-  const userData = setData((state) => state.data);
+  const address = setAddressStore((state) => state.address);
 
   const fetchUserData = async () => {
     const response = await axios.post(
@@ -45,16 +43,13 @@ const AccountBlock: NextPage = () => {
         },
       }
     );
-    console.log(response);
-
     return response;
   };
 
   const { isPending, data, error } = useQuery({
     queryKey: ["user"],
     queryFn: fetchUserData,
-    retryDelay: 1000,
-    refetchInterval: 5000,
+    enabled: !!address,
   });
 
   if (isPending) {
@@ -72,8 +67,8 @@ const AccountBlock: NextPage = () => {
     );
   }
 
-  setDatabase(data.data.object);
-  console.log(userData);
+  // setDatabase(data.data.object);
+  const userData = data.data.object;
 
   return (
     <>
@@ -98,7 +93,7 @@ const AccountBlock: NextPage = () => {
             </div>
             <div className={styles.userCount}>
               <span className={styles.userCount__number}>
-                {userData ? parseInt(userData.score_user) : ""}
+                {userData.score_user ? parseInt(userData.score_user) : ""}
               </span>
               <span className={styles.userCount__label}>Your points</span>
             </div>
@@ -402,7 +397,7 @@ const AccountBlock: NextPage = () => {
               </button>
             </div>
           </div>
-          <LeaderBoard />
+          <LeaderBoard address={address} jwt={jwt} />
         </div>
       </div>
     </>
