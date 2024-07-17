@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import classes from "./Countdown.module.css";
+import classes from "./Countdown.module.scss";
 
 const Countdown = () => {
   const [timerDays, setTimerDays] = useState(0);

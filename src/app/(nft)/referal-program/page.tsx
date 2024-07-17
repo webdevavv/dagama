@@ -397,7 +397,9 @@ const AccountBlock: NextPage = () => {
               </button>
             </div>
           </div>
-          <LeaderBoard address={address} jwt={jwt} />
+          <div className={styles.leaderBoardTable_wrapper}>
+            <LeaderBoard address={address} jwt={jwt} user={userData?.u_name} />
+          </div>
         </div>
       </div>
     </>
