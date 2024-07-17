@@ -18,7 +18,7 @@ const NftBlockItem: NextPage<INftItem> = ({ data }) => {
         <span>
           Total Rarity: <span>24%</span>
         </span>
-        <img src={data.image} alt={"NFT name"} />
+        <img src={data.image} alt={data.name} />
       </div>
       <div className={styles.text}>
         <div className={styles.text_title}>{data.name}</div>

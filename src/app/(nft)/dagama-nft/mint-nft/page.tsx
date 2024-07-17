@@ -1,6 +1,6 @@
 "use client";
 import type { NextPage } from "next";
-
+import data from "../../../../1.json";
 import styles from "../../../../styles/AccountBlock.module.scss";
 import { setAddressStore } from "../../../../stores/address-store";
 
@@ -8,7 +8,7 @@ const page: NextPage = () => {
   const address = setAddressStore((state) => state.address);
   return (
     <div className="container">
-      <div>
+      <div className={styles.MintNftPage}>
         <div className={styles.userBlock__wrapper + " " + "block-bg"}>
           <div className={styles.userBlock}>
             <div className={styles.userBlock__avatar}>
@@ -36,6 +36,44 @@ const page: NextPage = () => {
             <span className={styles.userCount__label}>
               NFT in <span>your collection</span>
             </span>
+          </div>
+        </div>
+        <div className={styles.MintNft + " " + "block-bg"}>
+          <div className={styles.MintNft__image}>
+            <div className={styles.image}>
+              <span>
+                Total Rarity: <span>24%</span>
+              </span>
+              <img src={data.image} alt={data.name} />
+            </div>
+          </div>
+          <div className={styles.MintNft__text}>
+            <div className={styles.text}>
+              <div className={styles.text_title}>{data.name}</div>
+              <div className={styles.text_info}>
+                <h4>Membership card Utility unblock: </h4>
+                <p>{data.description}</p>
+                <div className={styles.tags}>
+                  <span>
+                    Face rarity: <span>2%</span>
+                  </span>
+                  <span>
+                    Clothes rarity: <span>21%</span>
+                  </span>
+                  <span>
+                    Hand rarity: <span>11%</span>
+                  </span>
+                  <span>
+                    Skin rarity: <span>63%</span>
+                  </span>
+                  <span>
+                    Back rarity: <span>9%</span>
+                  </span>
+                </div>
+                <span className={styles.price}>0.1123 ETH</span>
+                <span className={styles.date}>Minted: 1 may, 2024</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
