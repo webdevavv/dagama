@@ -131,13 +131,25 @@
   position: relative;
   span {
     position: absolute;
-    background-color: #00f87a;
+    z-index: 9;
     height: 24px;
     width: 24px;
-    border: 1px solid #45505d;
+    background-color: #0a213e;
+    border: 1.5px solid #45505d;
+    transition: border-color 0.2s ease;
     border-radius: 50%;
     top: 10px;
+    cursor: pointer;
     left: -0%;
+    &:hover {
+      border-color: #00f87a;
+    }
+    &.active {
+      background-color: #00f87a;
+      &:hover {
+        border-color: #45505d;
+      }
+    }
     &:nth-child(2) {
       left: calc(25% - 6px);
     }
@@ -156,10 +168,9 @@
 .rangeInput {
   width: 100%;
   position: relative;
-  z-index: 10;
   --c: #00f87a; /* active color */
   --g: 0px; /* the gap */
-  --l: 1px; /* line thickness*/
+  --l: 0.5px; /* line thickness*/
   --s: 24px; /* thumb size*/
 
   height: var(--s); /* needed for Firefox*/
@@ -174,7 +185,7 @@
     aspect-ratio: 1;
     border-radius: 50%;
     box-shadow: 0 0 0 var(--l) inset var(--c);
-    border-image: linear-gradient(90deg, var(--c) 50%, #ababab 0) 0 1 /
+    border-image: linear-gradient(90deg, var(--c) 50%, #45505d 0) 0 1 /
       calc(50% - var(--l) / 2) 100vw/0 calc(100vw + var(--g));
     -webkit-appearance: none;
     appearance: none;
@@ -185,7 +196,7 @@
     background: none;
     border-radius: 50%;
     box-shadow: 0 0 0 var(--l) inset var(--c);
-    border-image: linear-gradient(90deg, var(--c) 50%, #ababab 0) 0 1 /
+    border-image: linear-gradient(90deg, var(--c) 50%, #45505d 0) 0 1 /
       calc(50% - var(--l) / 2) 100vw/0 calc(100vw + var(--g));
     -moz-appearance: none;
     appearance: none;

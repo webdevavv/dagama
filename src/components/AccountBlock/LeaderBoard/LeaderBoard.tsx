@@ -1,7 +1,7 @@
 "use client";
 import type { NextPage } from "next";
 import axios from "axios";
-import styles from "../../styles/AccountBlock.module.scss";
+import styles from "../../../styles/AccountBlock.module.scss";
 import { useQuery } from "@tanstack/react-query";
 import LeaderBoardItem from "./LeaderBoardItem";
 

@@ -1,0 +1,35 @@
+{
+    "name": "daGama Hedonist #1",
+    "description": "4000 NFTs, each a vibrant character who enjoys exploring and celebrating every moment of life. Each NFT in this collection captures a different facet of hedonism, a journey of uncovering hidden gems in the city and the simple pleasures that make life extraordinary. Each holder receives exclusive access to increased earning potential in the daGama ecosystem, experiences, exclusive events, and more. Travel Smart, Earn Rewards!",
+    "image": "https://gateway.pinata.cloud/ipfs/QmPpG8PCDTR5C2GRer1WzS6s1xvvVvQCymxchS77MwdHRW",
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Orange"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Pink and blue"
+        },
+        {
+            "trait_type": "Clothes",
+            "value": "T-shirt doodle"
+        },
+        {
+            "trait_type": "Head",
+            "value": "Viking helmet"
+        },
+        {
+            "trait_type": "Face",
+            "value": "3D glasses"
+        },
+        {
+            "trait_type": "Hand",
+            "value": "Cooking spatula"
+        },
+        {
+            "trait_type": "Rarity Group",
+            "value": "Common"
+        }
+    ]
+}

@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useAccount } from "wagmi";
 import { setJWT } from "../../../stores/setJWT-store";
 import ExportedImage from "next-image-export-optimizer";
-import LeaderBoard from "../../../components/LeaderBoard/LeaderBoard";
+import LeaderBoard from "../../../components/AccountBlock/LeaderBoard/LeaderBoard";
 import { setAddressStore } from "../../../stores/address-store";
 
 const path =
@@ -76,7 +76,12 @@ const AccountBlock: NextPage = () => {
         <div className={styles.leaderBoard}>
           <div className={styles.userBlock__wrapper + " " + "block-bg"}>
             <div className={styles.userBlock}>
-              <div className={styles.userBlock__avatar}></div>
+              <div className={styles.userBlock__avatar}>
+                <img
+                  src={`https://api.dicebear.com/6.x/notionists/svg?seed=Felix{$usr.${address}}&backgroundType=gradientLinear,solid&backgroundColor=ffffff,6affb3,45505d&size=126`}
+                  alt=""
+                />
+              </div>
               <div className={styles.userBlock__info}>
                 <div className={styles.userBlock__info_name}>
                   {userData?.u_name}

@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import type { Leaders } from "./LeaderBoard";
-import styles from "../../styles/AccountBlock.module.scss";
+import styles from "../../../styles/AccountBlock.module.scss";
 
 interface ILeaderBoardItem {
   item: Leaders;
