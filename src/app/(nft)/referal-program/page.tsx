@@ -358,7 +358,7 @@ const AccountBlock: NextPage = () => {
                     <div className="connector-success__text">Connected</div>
                   </div>
                 ) : (
-                  <a href={xUrl} className="discord_btn button ghost w-button">
+                  <a href={xUrl} className="button ghost w-button">
                     Connect
                   </a>
                 )}
