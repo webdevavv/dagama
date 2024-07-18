@@ -3,9 +3,11 @@ import type { NextPage } from "next";
 import data from "../../../../1.json";
 import styles from "../../../../styles/AccountBlock.module.scss";
 import { setAddressStore } from "../../../../stores/address-store";
+import { setData } from "../../../../stores/userData-store";
 
 const page: NextPage = () => {
   const address = setAddressStore((state) => state.address);
+  const userData = setData((state) => state.data);
   return (
     <div className="container">
       <div className={styles.MintNftPage}>
@@ -19,8 +21,8 @@ const page: NextPage = () => {
             </div>
             <div className={styles.userBlock__info}>
               <div className={styles.userBlock__info_name}>
-                @username
-                {false ? (
+                {userData?.u_name}
+                {userData?.wls ? (
                   <span>you are in white list</span>
                 ) : (
                   <span className={styles.not}>

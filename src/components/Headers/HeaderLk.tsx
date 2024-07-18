@@ -90,7 +90,11 @@ const Header: NextPage = () => {
           </Link>
           <Link
             href="/dagama-nft"
-            className={pathname === "/dagama-nft" ? "header-active-link" : " "}
+            className={
+              pathname === "/dagama-nft" || pathname === "/dagama-nft/mint-nft"
+                ? "header-active-link"
+                : " "
+            }
           >
             <p>dagama NFT</p>
           </Link>
