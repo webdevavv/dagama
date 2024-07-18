@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setJWT } from "../../stores/setJWT-store";
 
 import { useRouter } from "next/navigation";
+import { setInviteState } from "../../stores/setInviteState-store";
 
 interface IWalletAuthProps {
   isConnected: boolean;
@@ -142,11 +143,30 @@ const abs = [
   "z",
 ];
 
+const queryString = window.location.search;
+const parameters = new URLSearchParams(queryString);
+const refValue = parameters.get("ref");
+console.log(refValue);
+
 const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [codeStatus, setCodeStatus] = useState<boolean>(true);
   const [messageErr, setMessageErr] = useState<null | string>(null);
   const jwt = setJWT((state) => state.jwtToken);
+  const setInviteStatus = setInviteState((state) => state.setInviteState);
+
+  useEffect(() => {
+    if (refValue) {
+      setCode([
+        refValue[0],
+        refValue[1],
+        refValue[2],
+        refValue[3],
+        refValue[4],
+        refValue[5],
+      ]);
+    }
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newInputValues = [...code];
@@ -177,6 +197,7 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
           for (let i = 0; i < input.length; i++) {
             if (input[inputNumber - 1]) {
               (input[inputNumber - 1] as HTMLElement).focus();
+              e.target.value = "";
               handleInputChange(e);
             }
             if (inputNumber === 0) {
@@ -213,6 +234,7 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
         return false;
       }
       sendAddInvite(address);
+      setInviteStatus("soc_conect");
       setCode(["", "", "", "", "", ""]);
     }
   };
@@ -258,6 +280,7 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
                 id="firstInput"
                 placeholder="•"
                 type="text"
+                value={code.join("")[0]}
                 onChange={(e) => handleChange(e)}
               />
               <input
@@ -267,6 +290,7 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
                 name="1"
                 placeholder="•"
                 type="text"
+                value={code.join("")[1]}
                 onChange={(e) => handleChange(e)}
               />
               <input
@@ -276,6 +300,7 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
                 name="2"
                 placeholder="•"
                 type="text"
+                value={code.join("")[2]}
                 onChange={(e) => handleChange(e)}
               />
               <input
@@ -285,6 +310,7 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
                 name="3"
                 placeholder="•"
                 type="text"
+                value={code.join("")[3]}
                 onChange={(e) => handleChange(e)}
               />
               <input
@@ -294,6 +320,7 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
                 name="4"
                 placeholder="•"
                 type="text"
+                value={code.join("")[4]}
                 onChange={(e) => handleChange(e)}
               />
               <input
@@ -303,6 +330,7 @@ const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
                 name="5"
                 placeholder="•"
                 type="text"
+                value={code.join("")[5]}
                 onChange={(e) => handleChange(e)}
               />
             </div>

@@ -9,7 +9,7 @@ interface ISetInviteState {
 export const setInviteState = create(
   persist<ISetInviteState>(
     (set) => ({
-      inviteState: "unauthenticated",
+      inviteState: "invite_code",
       setInviteState: (invite) => set((state) => ({ inviteState: invite })),
     }),
     {

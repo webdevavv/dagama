@@ -104,9 +104,11 @@ const LeaderBoard: NextPage<IWalletAuthProps> = ({ address, jwt, user }) => {
           Points earned
         </div>
       </div>
-      {leaders.map((item: Leaders) => (
-        <LeaderBoardItem key={item.user_id} item={item} user={user} />
-      ))}
+      <div className={styles.leaderBoardTable__items}>
+        {leaders.map((item: Leaders) => (
+          <LeaderBoardItem key={item.user_id} item={item} user={user} />
+        ))}
+      </div>
     </div>
   );
 };

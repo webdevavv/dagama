@@ -7,6 +7,7 @@ import Countdown from "../../../components/NFT/Countdown";
 import ExportedImage from "next-image-export-optimizer";
 import NftBlock from "../../../components/NFT/NftBlock/NftBlock";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 // import Image from "next/image";
 
 const Home: NextPage = () => {
@@ -35,7 +36,7 @@ const Home: NextPage = () => {
                 <h1 className="text-center">
                   Mint your first NFT <span>now</span>
                 </h1>
-                <ExportedImage
+                <Image
                   src="/img/index.png"
                   width={384}
                   height={280}

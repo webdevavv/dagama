@@ -344,9 +344,27 @@
 
 .leaderBoardTable_wrapper {
   width: 100%;
-  position: relative;
-  overflow-x: scroll;
   border-radius: 8px;
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    button {
+      color: #051323;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 16px 24px;
+      border-radius: 8px;
+      background: #00f87a;
+    }
+    @media (max-width: 660px) {
+      button {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+    }
+  }
 }
 
 .leaderBoardTable {
@@ -354,17 +372,15 @@
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
-  @media (max-width: 700px) {
-    width: 650px;
-  }
   &__head {
     display: grid;
-    grid-template-columns: 60px 200px 1fr 200px;
+    grid-template-columns: 60px 160px 1fr 200px;
     gap: 10px;
     border-radius: 8px;
     background: rgba(69, 80, 93, 0.1);
     backdrop-filter: blur(15px);
     padding: 24px;
+
     &_item {
       color: #fff;
       font-size: 20px;
@@ -374,6 +390,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media (max-width: 660px) {
+        display: none;
+      }
     }
     &_point {
       text-align: right;
@@ -381,11 +400,23 @@
       align-items: center;
       justify-content: end;
     }
+    @media (max-width: 660px) {
+      grid-template-columns: 60px 1fr 100px;
+      padding: 16px;
+      &_item {
+        font-size: 14px;
+      }
+    }
+  }
+  &__items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
   &__item {
     position: relative;
     display: grid;
-    grid-template-columns: 60px 200px 1fr 200px;
+    grid-template-columns: 60px 160px 1fr 200px;
     border-radius: 8px;
     padding: 24px;
     &::before {
@@ -414,6 +445,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media (max-width: 660px) {
+        display: none;
+      }
     }
     &_point {
       text-align: right;
@@ -422,11 +456,19 @@
       justify-content: end;
       font-weight: 700;
     }
+    @media (max-width: 660px) {
+      grid-template-columns: 60px 1fr 100px;
+      padding: 16px;
+      &_item {
+        font-size: 14px;
+      }
+    }
   }
   &__item_accent {
-    position: relative;
+    position: sticky;
+    bottom: 0;
     display: grid;
-    grid-template-columns: 60px 200px 1fr 200px;
+    grid-template-columns: 60px 160px 1fr 200px;
     border-radius: 8px;
     padding: 24px;
     background-color: #6affb3;
@@ -442,6 +484,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media (max-width: 660px) {
+        display: none;
+      }
     }
     .leaderBoardTable__item_point {
       text-align: right;
@@ -449,6 +494,13 @@
       align-items: center;
       justify-content: end;
       font-weight: 700;
+    }
+    @media (max-width: 660px) {
+      grid-template-columns: 60px 1fr 100px;
+      padding: 16px;
+      .leaderBoardTable__item_item {
+        font-size: 14px;
+      }
     }
   }
 }

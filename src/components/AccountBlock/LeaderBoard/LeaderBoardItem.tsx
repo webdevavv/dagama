@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import type { Leaders } from "./LeaderBoard";
 import styles from "../../../styles/AccountBlock.module.scss";
+import { setData } from "../../../stores/userData-store";
 
 interface ILeaderBoardItem {
   item: Leaders;
@@ -8,10 +9,12 @@ interface ILeaderBoardItem {
 }
 
 const LeaderBoardItem: NextPage<ILeaderBoardItem> = ({ item, user }) => {
+  const userData = setData((state) => state.data);
+
   return (
     <div
       className={
-        user === item.username
+        userData?.u_rank === item.place
           ? styles.leaderBoardTable__item_accent
           : styles.leaderBoardTable__item
       }

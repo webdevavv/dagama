@@ -4,10 +4,11 @@ import axios from "axios";
 import styles from "../../../styles/AccountBlock.module.scss";
 import { useQuery } from "@tanstack/react-query";
 import { setJWT } from "../../../stores/setJWT-store";
-import ExportedImage from "next-image-export-optimizer";
+import { setData } from "../../../stores/userData-store";
 import LeaderBoard from "../../../components/AccountBlock/LeaderBoard/LeaderBoard";
 import { setAddressStore } from "../../../stores/address-store";
 import { useState } from "react";
+import Image from "next/image";
 
 const path =
   "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
@@ -28,6 +29,7 @@ const handleClipBoardPath = (text: string | undefined) => {
 const AccountBlock: NextPage = () => {
   const jwt: string = setJWT((state) => state.jwtToken);
   const address = setAddressStore((state) => state.address);
+  const setUserData = setData((state) => state.setData);
   const [isCopied, setIsCopied] = useState(false);
   const [isCopied2, setIsCopied2] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -68,6 +70,8 @@ const AccountBlock: NextPage = () => {
         },
       }
     );
+    setUserData(response.data.object);
+
     return response;
   };
 
@@ -209,7 +213,7 @@ const AccountBlock: NextPage = () => {
               >
                 <div className="connector-info">
                   <div className="connector-social">
-                    <ExportedImage
+                    <Image
                       width={24}
                       height={24}
                       src="/img/tg.svg"
@@ -264,7 +268,7 @@ const AccountBlock: NextPage = () => {
               >
                 <div className="connector-info">
                   <div className="connector-social">
-                    <ExportedImage
+                    <Image
                       width={24}
                       height={24}
                       src="/img/x.svg"
@@ -319,7 +323,7 @@ const AccountBlock: NextPage = () => {
               >
                 <div className="connector-info">
                   <div className="connector-social">
-                    <ExportedImage
+                    <Image
                       width={24}
                       height={24}
                       src="/img/discord.svg"
@@ -374,7 +378,7 @@ const AccountBlock: NextPage = () => {
               >
                 <div className="connector-info">
                   <div className="connector-social">
-                    <ExportedImage
+                    <Image
                       width={24}
                       height={24}
                       src="/img/gitpass.svg"
@@ -459,6 +463,9 @@ const AccountBlock: NextPage = () => {
           </div>
           <div className={styles.leaderBoardTable_wrapper}>
             <LeaderBoard address={address} jwt={jwt} user={userData?.u_name} />
+            <div className={styles.button}>
+              <button>Load more</button>
+            </div>
           </div>
         </div>
       </div>

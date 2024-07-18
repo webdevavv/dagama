@@ -28,6 +28,7 @@ import Footer from "../../components/Footer/index";
 import { setAuthenticated } from "../../stores/authenticated-store";
 import { setJWT } from "../../stores/setJWT-store";
 import { setInviteState } from "../../stores/setInviteState-store";
+import { setData } from "../../stores/userData-store";
 
 const config = getDefaultConfig({
   appName: "RainbowKit App",
@@ -53,6 +54,7 @@ const path =
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const authStatus = setAuthenticated((state) => state.authenticated);
+  const setUserData = setData((state) => state.setData);
   const setAuthStatus = setAuthenticated(
     (state) => state.setAuthenticatedStatus
   );
@@ -108,6 +110,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
     signOut: async () => {
       await fetch(`${path}?logout=true`);
       setAuthStatus("unauthenticated");
+      setUserData(null);
       router.push("/");
       setJwtToken("");
     },
