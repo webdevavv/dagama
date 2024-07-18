@@ -7,7 +7,7 @@ export const CustomConnectButton = () => {
           <button
             onClick={openConnectModal}
             type="button"
-            className="custom-btn w-button"
+            className="custom-btn w-button connect-btn"
           >
             Join early access
           </button>

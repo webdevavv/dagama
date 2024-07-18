@@ -3,11 +3,11 @@ import type { NextPage } from "next";
 import axios from "axios";
 import styles from "../../../styles/AccountBlock.module.scss";
 import { useQuery } from "@tanstack/react-query";
-import { useAccount } from "wagmi";
 import { setJWT } from "../../../stores/setJWT-store";
 import ExportedImage from "next-image-export-optimizer";
 import LeaderBoard from "../../../components/AccountBlock/LeaderBoard/LeaderBoard";
 import { setAddressStore } from "../../../stores/address-store";
+import { useState } from "react";
 
 const path =
   "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
@@ -28,6 +28,31 @@ const handleClipBoardPath = (text: string | undefined) => {
 const AccountBlock: NextPage = () => {
   const jwt: string = setJWT((state) => state.jwtToken);
   const address = setAddressStore((state) => state.address);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isCopied2, setIsCopied2] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert2, setShowAlert2] = useState(false);
+
+  const handleClipBoardPathByRef = (
+    text: string | undefined,
+    setCopyStatus: any,
+    showCopyAlert: any
+  ) => {
+    if (text) {
+      navigator.clipboard.writeText(text).then(
+        function () {
+          showCopyAlert(true);
+          setCopyStatus(true);
+          setTimeout(() => {
+            showCopyAlert(false);
+          }, 3000);
+        },
+        function (err) {
+          console.error("Произошла ошибка при копировании текста: ", err);
+        }
+      );
+    }
+  };
 
   const fetchUserData = async () => {
     const response = await axios.post(
@@ -67,7 +92,6 @@ const AccountBlock: NextPage = () => {
     );
   }
 
-  // setDatabase(data.data.object);
   const userData = data.data.object;
 
   return (
@@ -124,18 +148,49 @@ const AccountBlock: NextPage = () => {
               <div className={styles.userRef__table_item}>
                 <span className={styles.userRef__table_item_name}>Code</span>
                 <span className={styles.userRef__table_item_value}>
-                  {userData?.refer}
+                  {/* TODO: */}
+                  {showAlert ? <span>Сopied</span> : userData?.refer}
                 </span>
-                <button className={styles.userRef__table_item_button}></button>
+                <button
+                  className={
+                    isCopied
+                      ? styles.userRef__table_item_button_copy
+                      : styles.userRef__table_item_button
+                  }
+                  onClick={() => {
+                    handleClipBoardPathByRef(
+                      userData?.refer,
+                      setIsCopied,
+                      setShowAlert
+                    );
+                  }}
+                ></button>
               </div>
               <div className={styles.userRef__table_item}>
                 <span className={styles.userRef__table_item_name}>Link</span>
                 <span className={styles.userRef__table_item_value}>
-                  {userData?.remote_key
-                    ? `https://dagama.world/...=${userData.remote_key}`
-                    : " "}
+                  {/* TODO: */}
+
+                  {showAlert2 ? (
+                    <span>Сopied</span>
+                  ) : (
+                    `https://dagama.world/...=${userData.remote_key}`
+                  )}
                 </span>
-                <button className={styles.userRef__table_item_button}></button>
+                <button
+                  className={
+                    isCopied2
+                      ? styles.userRef__table_item_button_copy
+                      : styles.userRef__table_item_button
+                  }
+                  onClick={() => {
+                    handleClipBoardPathByRef(
+                      userData.invite_link,
+                      setIsCopied2,
+                      setShowAlert2
+                    );
+                  }}
+                ></button>
               </div>
             </div>
           </div>
