@@ -495,7 +495,7 @@
     }
   }
   &__text {
-    max-width: 588px;
+    max-width: 740px;
     margin: 0 auto;
     .text {
       display: flex;
@@ -521,8 +521,8 @@
         }
         .tags {
           display: flex;
-          flex-direction: column;
-          align-items: center;
+          flex-wrap: wrap;
+          justify-content: space-between;
           gap: 24px;
           > span {
             border-radius: 8px;
@@ -531,12 +531,18 @@
             color: #9ca4ae;
             font-size: 20px;
             font-weight: 400;
-            max-width: 100%;
-            width: 100%;
             span {
               font-size: inherit;
               font-weight: inherit;
               color: #fff;
+            }
+            &:nth-child(1) {
+              max-width: 358px;
+              width: 100%;
+            }
+            &:nth-child(2) {
+              max-width: 358px;
+              width: 100%;
             }
           }
         }
