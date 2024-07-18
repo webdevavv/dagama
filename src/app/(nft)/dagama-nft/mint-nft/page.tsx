@@ -8,6 +8,7 @@ import { setData } from "../../../../stores/userData-store";
 const page: NextPage = () => {
   const address = setAddressStore((state) => state.address);
   const userData = setData((state) => state.data);
+
   return (
     <div className="container">
       <div className={styles.MintNftPage}>
@@ -44,7 +45,8 @@ const page: NextPage = () => {
           <div className={styles.MintNft__image}>
             <div className={styles.image}>
               <span>
-                Total Rarity: <span>24%</span>
+                {data.attributes[6].trait_type}{" "}
+                <span>{data.attributes[6].value}</span>
               </span>
               <img src={data.image} alt={data.name} />
             </div>
@@ -57,19 +59,24 @@ const page: NextPage = () => {
                 <p>{data.description}</p>
                 <div className={styles.tags}>
                   <span>
-                    Face rarity: <span>2%</span>
+                    {data.attributes[4].trait_type}{" "}
+                    <span>{data.attributes[4].value}</span>
                   </span>
                   <span>
-                    Clothes rarity: <span>21%</span>
+                    {data.attributes[2].trait_type}{" "}
+                    <span>{data.attributes[2].value}</span>
                   </span>
                   <span>
-                    Hand rarity: <span>11%</span>
+                    {data.attributes[5].trait_type}{" "}
+                    <span>{data.attributes[5].value}</span>
                   </span>
                   <span>
-                    Skin rarity: <span>63%</span>
+                    {data.attributes[1].trait_type}{" "}
+                    <span>{data.attributes[1].value}</span>
                   </span>
                   <span>
-                    Back rarity: <span>9%</span>
+                    {data.attributes[0].trait_type}{" "}
+                    <span>{data.attributes[0].value}</span>
                   </span>
                 </div>
                 <span className={styles.price}>0.1123 ETH</span>
