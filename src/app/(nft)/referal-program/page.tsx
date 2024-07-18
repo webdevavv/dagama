@@ -7,7 +7,7 @@ import { setJWT } from "../../../stores/setJWT-store";
 import { setData } from "../../../stores/userData-store";
 import LeaderBoard from "../../../components/AccountBlock/LeaderBoard/LeaderBoard";
 import { setAddressStore } from "../../../stores/address-store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const path =
@@ -34,6 +34,61 @@ const AccountBlock: NextPage = () => {
   const [isCopied2, setIsCopied2] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showAlert2, setShowAlert2] = useState(false);
+
+  const [tgUrl, setTgUrl] = useState("");
+  const [xUrl, setXUrl] = useState("");
+
+  const handleTgBtn = async (
+    walletAddress: string | undefined,
+    jwtToken: string
+  ) => {
+    const response = await axios.post(
+      path,
+      {
+        request: "tgUrl",
+        address: walletAddress,
+        JWT: jwtToken,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // const data = response.data.object.url;
+    // setTgUrl(data);
+    return response.data.object.url;
+  };
+  const handleXBtn = async (
+    walletAddress: string | undefined,
+    jwtToken: string
+  ) => {
+    const response = await axios.post(
+      path,
+      {
+        request: "xUrl",
+        address: walletAddress,
+        JWT: jwtToken,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data.object.url;
+  };
+
+  useEffect(() => {
+    if (address && jwt) {
+      handleTgBtn(address, jwt).then((data) => setTgUrl(data));
+      handleXBtn(address, jwt).then((data) => setXUrl(data));
+    }
+  }, [address]);
+
+  console.log(tgUrl, xUrl, "tg");
 
   const handleClipBoardPathByRef = (
     text: string | undefined,
@@ -251,10 +306,7 @@ const AccountBlock: NextPage = () => {
                     <div className="connector-success__text">Connected</div>
                   </div>
                 ) : (
-                  <a
-                    href={userData?.discord_link}
-                    className="discord_btn button ghost w-button"
-                  >
+                  <a href={tgUrl} className="discord_btn button ghost w-button">
                     Connect
                   </a>
                 )}
@@ -306,10 +358,7 @@ const AccountBlock: NextPage = () => {
                     <div className="connector-success__text">Connected</div>
                   </div>
                 ) : (
-                  <a
-                    href={userData?.discord_link}
-                    className="discord_btn button ghost w-button"
-                  >
+                  <a href={xUrl} className="discord_btn button ghost w-button">
                     Connect
                   </a>
                 )}

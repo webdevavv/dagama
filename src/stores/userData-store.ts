@@ -21,7 +21,7 @@ type fetchData = {
 
 interface ISetData {
   data: fetchData | null;
-  setData: (data: fetchData) => void;
+  setData: (data: fetchData | null) => void;
 }
 
 export const setData = create(
