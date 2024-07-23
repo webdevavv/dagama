@@ -145,6 +145,7 @@ const abs = [
 
 const parameters = new URLSearchParams(window.location.search);
 const refValue = parameters.get("ref");
+console.log(refValue);
 
 const WalletAuth: NextPage<IWalletAuthProps> = ({ isConnected, address }) => {
   const [code, setCode] = useState(["", "", "", "", "", ""]);
