@@ -1,9 +1,9 @@
 "use client";
 
 import type { NextPage } from "next";
-import ExportedImage from "next-image-export-optimizer";
 import { CustomConnectButton } from "../CustomConnectButtons/CustomConnectButton";
 import styles from "./StartPage.module.scss";
+import Image from "next/image";
 
 const StartPage: NextPage = () => {
   return (
@@ -11,12 +11,7 @@ const StartPage: NextPage = () => {
       <div className="container">
         <div className={styles.startPage}>
           <div className={styles.startPage__image}>
-            <ExportedImage
-              src="/img/mainImage.png"
-              width="1111"
-              height="1071"
-              alt=""
-            />
+            <Image src="/img/mainImage.png" width="1111" height="1071" alt="" />
           </div>
           <div className={styles.startPage__info}>
             <div className="frame-1948756954">

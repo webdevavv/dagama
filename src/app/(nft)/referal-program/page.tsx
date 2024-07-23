@@ -8,7 +8,9 @@ import { setData } from "../../../stores/userData-store";
 import LeaderBoard from "../../../components/AccountBlock/LeaderBoard/LeaderBoard";
 import { setAddressStore } from "../../../stores/address-store";
 import { useEffect, useState } from "react";
+import { useAccount } from "wagmi";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 const path =
   "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
@@ -27,8 +29,10 @@ const handleClipBoardPath = (text: string | undefined) => {
 };
 
 const AccountBlock: NextPage = () => {
+  const userAddress = useAccount();
   const jwt: string = setJWT((state) => state.jwtToken);
   const address = setAddressStore((state) => state.address);
+  const setAddress = setAddressStore((state) => state.setAddress);
   const setUserData = setData((state) => state.setData);
   const [isCopied, setIsCopied] = useState(false);
   const [isCopied2, setIsCopied2] = useState(false);
@@ -37,6 +41,34 @@ const AccountBlock: NextPage = () => {
 
   const [tgUrl, setTgUrl] = useState("");
   const [xUrl, setXUrl] = useState("");
+
+  const searchParams = useSearchParams();
+
+  const ref = searchParams.get("auth");
+
+  if (ref === "dicord") {
+    const disRef = searchParams.get("code");
+    axios({
+      method: "get",
+      url: "https://jsonplaceholder.typicode.com/todos",
+      params: {
+        _limit: 5,
+      },
+    });
+    console.log(disRef);
+  }
+  if (ref === "x") {
+    const xRef = searchParams.get("code");
+    console.log(xRef);
+  }
+
+  console.log(ref);
+
+  setTimeout(() => {
+    if (address === "") {
+      setAddress(userAddress.address);
+    }
+  }, 2000);
 
   const handleTgBtn = async (
     walletAddress: string | undefined,
@@ -80,15 +112,12 @@ const AccountBlock: NextPage = () => {
 
     return response.data.object.url;
   };
-
   useEffect(() => {
     if (address && jwt) {
       handleTgBtn(address, jwt).then((data) => setTgUrl(data));
       handleXBtn(address, jwt).then((data) => setXUrl(data));
     }
   }, [address]);
-
-  console.log(tgUrl, xUrl, "tg");
 
   const handleClipBoardPathByRef = (
     text: string | undefined,
@@ -133,6 +162,7 @@ const AccountBlock: NextPage = () => {
   const { isPending, data, error } = useQuery({
     queryKey: ["user"],
     queryFn: fetchUserData,
+    refetchInterval: 7000,
     enabled: !!address,
   });
 
@@ -279,8 +309,9 @@ const AccountBlock: NextPage = () => {
                   </div>
                   <div className="connector-point">
                     <div className="connector-point__text connector-point__text-plus">
-                      +
+                      + {userData.def_score.score_tg}
                     </div>
+
                     <div className="connector-point__text">points</div>
                   </div>
                 </div>
@@ -331,7 +362,7 @@ const AccountBlock: NextPage = () => {
                   </div>
                   <div className="connector-point">
                     <div className="connector-point__text connector-point__text-plus">
-                      +
+                      + {userData.def_score.score_xt}
                     </div>
                     <div className="connector-point__text">points</div>
                   </div>
@@ -383,7 +414,7 @@ const AccountBlock: NextPage = () => {
                   </div>
                   <div className="connector-point">
                     <div className="connector-point__text connector-point__text-plus">
-                      +
+                      + {userData.def_score.score_dicord}
                     </div>
                     <div className="connector-point__text">points</div>
                   </div>
@@ -438,7 +469,7 @@ const AccountBlock: NextPage = () => {
                   </div>
                   <div className="connector-point">
                     <div className="connector-point__text connector-point__text-plus">
-                      +
+                      + {userData.def_score.score_gp}
                     </div>
                     <div className="connector-point__text"> points</div>
                   </div>

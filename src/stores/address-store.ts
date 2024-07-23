@@ -9,8 +9,7 @@ export const setAddressStore = create(
   persist<ISetAddressStore>(
     (set) => ({
       address: "",
-      setAddress: (authenticatedStatus) =>
-        set((state) => ({ address: authenticatedStatus })),
+      setAddress: (address) => set((state) => ({ address: address })),
     }),
     {
       name: "address", // name of the item in the storage (must be unique)

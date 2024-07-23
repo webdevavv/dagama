@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "out": "next build && next-image-export-optimizer",
     "start": "next start",
     "lint": "next lint"
   },

@@ -5,7 +5,7 @@ import "../../styles/globals.scss";
 
 import { gilroyFont } from "../../font/font";
 
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import { spaceGrotesk } from "../../utils/spaceGroteskFontFamily";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
@@ -155,7 +155,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
               <RainbowKitProvider initialChain={arbitrum}>
                 <div className="appWrapper">
                   <HeaderLk />
-                  <div className="appContent">{children}</div>
+                  <div className="appContent">
+                    <Suspense
+                      fallback={<div className="container">Loading...</div>}
+                    >
+                      {children}
+                    </Suspense>
+                  </div>
                   <Footer />
                 </div>
               </RainbowKitProvider>
