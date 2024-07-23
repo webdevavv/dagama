@@ -5,11 +5,11 @@ import type { NextPage } from "next";
 import { setAuthenticated } from "../../stores/authenticated-store";
 
 import StartPage from "../../components/StartPage/StartPage";
-import WalletAuth from "../../components/WalletAuth/WalletAuth";
 import { useAccount } from "wagmi";
 import { setInviteState } from "../../stores/setInviteState-store";
 import { setAddressStore } from "../../stores/address-store";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import CodeInput from "../../components/WalletAuth/CodeInput";
 
@@ -26,10 +26,16 @@ const Home: NextPage = () => {
 
   const router = useRouter();
 
-  const ref = window.location.search;
-  const parameters = new URLSearchParams(ref);
-  const value = parameters.get("ref");
-  console.log(value);
+  const searchParams = useSearchParams();
+
+  const ref = searchParams.get("ref");
+
+  console.log(ref);
+
+  // const ref = window.location.search;
+  // const parameters = new URLSearchParams(ref);
+  // const value = parameters.get("ref");
+  // console.log(value);
 
   setAddress(address);
 
@@ -42,7 +48,7 @@ const Home: NextPage = () => {
       {isAuth === "unauthenticated" && <StartPage />}
       {isAuth === "authenticated" && invState !== "soc_conect" && (
         <CodeInput
-          initialCode={value}
+          initialCode={ref}
           isConnected={isConnected}
           address={address}
         />
