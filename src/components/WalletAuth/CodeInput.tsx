@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { setJWT } from "../../stores/setJWT-store";
 import { setInviteState } from "../../stores/setInviteState-store";
 import { useRouter } from "next/navigation";
@@ -98,57 +98,61 @@ const CodeInput: React.FC<Props> = ({ initialCode, isConnected, address }) => {
   };
 
   return (
-    <div className="code-input">
-      <div className="hero-stack">
-        <div className="container">
-          <div className="header-1 center">Early access airdrop</div>
-          <div className="desc desc-center">
-            Enter your invite code to claim your drop
-          </div>
-          <div className="form-block w-form">
-            <div id="invite_code_form" className="form">
-              <div className="fields">
-                {Array.from({ length: 6 }, (_, i) => (
-                  <input
-                    key={i}
-                    type="text"
-                    className="input w-input"
-                    maxLength={1}
-                    // @ts-ignore
-                    ref={(el) => (inputRefs.current[i] = el)}
-                    value={code[i] || ""}
-                    onChange={(e) => handleInputChange(i, e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    onKeyUp={(e) => {
-                      if (e.key === "Backspace") {
-                        handleBackspace(i);
-                      }
-                    }}
-                  />
-                ))}
+    <>
+      <Suspense fallback={<div className="container">Getting code...</div>}>
+        <div className="code-input">
+          <div className="hero-stack">
+            <div className="container">
+              <div className="header-1 center">Early access airdrop</div>
+              <div className="desc desc-center">
+                Enter your invite code to claim your drop
               </div>
+              <div className="form-block w-form">
+                <div id="invite_code_form" className="form">
+                  <div className="fields">
+                    {Array.from({ length: 6 }, (_, i) => (
+                      <input
+                        key={i}
+                        type="text"
+                        className="input w-input"
+                        maxLength={1}
+                        // @ts-ignore
+                        ref={(el) => (inputRefs.current[i] = el)}
+                        value={code[i] || ""}
+                        onChange={(e) => handleInputChange(i, e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        onKeyUp={(e) => {
+                          if (e.key === "Backspace") {
+                            handleBackspace(i);
+                          }
+                        }}
+                      />
+                    ))}
+                  </div>
 
-              {codeStatus === false ? (
-                <div className="form-code__res w-form-fail">
-                  <div>{messageErr}</div>
+                  {codeStatus === false ? (
+                    <div className="form-code__res w-form-fail">
+                      <div>{messageErr}</div>
+                    </div>
+                  ) : null}
+
+                  <div className="div-block-6">
+                    <button
+                      data-wait="Please wait..."
+                      className="button-green w-button send_invite"
+                      onClick={() => handleBtnAuth()}
+                    >
+                      {" "}
+                      Enter invite code
+                    </button>
+                  </div>
                 </div>
-              ) : null}
-
-              <div className="div-block-6">
-                <button
-                  data-wait="Please wait..."
-                  className="button-green w-button send_invite"
-                  onClick={() => handleBtnAuth()}
-                >
-                  {" "}
-                  Enter invite code
-                </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </Suspense>
+    </>
   );
 };
 
