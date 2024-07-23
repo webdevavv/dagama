@@ -1,6 +1,7 @@
 "use client";
 import "@rainbow-me/rainbowkit/styles.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { Suspense } from "react";
 import "../../styles/globals.scss";
 
 import { gilroyFont } from "../../font/font";
@@ -156,7 +157,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
               <RainbowKitProvider initialChain={arbitrum}>
                 <div className="appWrapper">
                   <Header />
-                  <div className="appContent">{children}</div>
+                  <div className="appContent">
+                    <Suspense
+                      fallback={<div className="container">Loading...</div>}
+                    >
+                      {children}
+                    </Suspense>
+                  </div>
                   <Footer />
                 </div>
               </RainbowKitProvider>

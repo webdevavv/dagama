@@ -32,10 +32,10 @@ const Home: NextPage = () => {
 
   console.log(ref);
 
-  // const ref = window.location.search;
-  // const parameters = new URLSearchParams(ref);
-  // const value = parameters.get("ref");
-  // console.log(value);
+  // const refQuery = window.location.search;
+  // const parameters = new URLSearchParams(refQuery);
+  // const ref = parameters.get("ref");
+  // console.log(ref);
 
   setAddress(address);
 
