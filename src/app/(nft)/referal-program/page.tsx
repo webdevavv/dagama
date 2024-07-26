@@ -7,13 +7,26 @@ import { setJWT } from "../../../stores/setJWT-store";
 import { setData } from "../../../stores/userData-store";
 import LeaderBoard from "../../../components/AccountBlock/LeaderBoard/LeaderBoard";
 import { setAddressStore } from "../../../stores/address-store";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAccount } from "wagmi";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import GPassport from "../../../components/GPconnectors/GPassport";
+// import { BrowserProvider, ethers, JsonRpcSigner } from "ethers";
 
-const path =
-  "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
+// export interface IWeb3State {
+//   address: string | null;
+//   currentChain: number | null;
+//   signer: JsonRpcSigner | null;
+//   provider: BrowserProvider | null;
+//   isAuthenticated: boolean;
+// }
+
+const path = process.env.NEXT_PUBLIC_REQUEST_SERVER_PATH as string;
+
+// const path =
+//   "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
 
 const handleClipBoardPath = (text: string | undefined) => {
   if (text) {
@@ -29,40 +42,65 @@ const handleClipBoardPath = (text: string | undefined) => {
 };
 
 const AccountBlock: NextPage = () => {
+  const router = useRouter();
+
   const userAddress = useAccount();
   const jwt: string = setJWT((state) => state.jwtToken);
   const address = setAddressStore((state) => state.address);
   const setAddress = setAddressStore((state) => state.setAddress);
   const setUserData = setData((state) => state.setData);
+  const userData = setData((state) => state.data);
   const [isCopied, setIsCopied] = useState(false);
   const [isCopied2, setIsCopied2] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showAlert2, setShowAlert2] = useState(false);
 
   const [tgUrl, setTgUrl] = useState("");
-  const [xUrl, setXUrl] = useState("");
 
   const searchParams = useSearchParams();
 
   const ref = searchParams.get("auth");
 
-  if (ref === "dicord") {
-    const disRef = searchParams.get("code");
-    axios({
-      method: "get",
-      url: "https://jsonplaceholder.typicode.com/todos",
-      params: {
-        _limit: 5,
-      },
-    });
-    console.log(disRef);
-  }
-  if (ref === "x") {
-    const xRef = searchParams.get("code");
-    console.log(xRef);
-  }
-
-  console.log(ref);
+  useMemo(() => {
+    if (ref === "dicord") {
+      const disRef = searchParams.get("code");
+      axios.post(
+        path,
+        {
+          request: "Savediscord",
+          address: address,
+          JWT: jwt,
+          auth: ref,
+          code: disRef,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(disRef);
+    }
+    if (ref === "xt") {
+      const xtRef = searchParams.get("code");
+      axios.post(
+        path,
+        {
+          request: "SaveXt",
+          address: address,
+          JWT: jwt,
+          auth: ref,
+          code: xtRef,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(xtRef);
+    }
+  }, []);
 
   setTimeout(() => {
     if (address === "") {
@@ -109,13 +147,13 @@ const AccountBlock: NextPage = () => {
         },
       }
     );
-
+    router.push(response.data.object.url);
     return response.data.object.url;
   };
+
   useEffect(() => {
     if (address && jwt) {
       handleTgBtn(address, jwt).then((data) => setTgUrl(data));
-      handleXBtn(address, jwt).then((data) => setXUrl(data));
     }
   }, [address]);
 
@@ -181,8 +219,6 @@ const AccountBlock: NextPage = () => {
     );
   }
 
-  const userData = data.data.object;
-
   return (
     <>
       <div className="container">
@@ -197,13 +233,11 @@ const AccountBlock: NextPage = () => {
               </div>
               <div className={styles.userBlock__info}>
                 <div className={styles.userBlock__info_name}>
-                  {userData?.u_name}
+                  <div>{userData?.u_name}</div>
                   {userData?.wls ? (
-                    <span>you are in white list</span>
+                    <span>whitelisted</span>
                   ) : (
-                    <span className={styles.not}>
-                      you are not on the white list
-                    </span>
+                    <span className={styles.not}>not whitelisted</span>
                   )}
                 </div>
                 <div className={styles.userBlock__info_address}>{address}</div>
@@ -211,7 +245,7 @@ const AccountBlock: NextPage = () => {
             </div>
             <div className={styles.userCount}>
               <span className={styles.userCount__number}>
-                {userData.score_user ? parseInt(userData.score_user) : ""}
+                {userData?.score_user ? parseInt(userData?.score_user) : ""}
               </span>
               <span className={styles.userCount__label}>Your points</span>
             </div>
@@ -238,7 +272,7 @@ const AccountBlock: NextPage = () => {
                 <span className={styles.userRef__table_item_name}>Code</span>
                 <span className={styles.userRef__table_item_value}>
                   {/* TODO: */}
-                  {showAlert ? <span>Сopied</span> : userData?.refer}
+                  {showAlert ? <span>Сopied</span> : userData?.remote_key}
                 </span>
                 <button
                   className={
@@ -263,7 +297,7 @@ const AccountBlock: NextPage = () => {
                   {showAlert2 ? (
                     <span>Сopied</span>
                   ) : (
-                    `https://dagama.world/...=${userData.remote_key}`
+                    `https://dagama.world/...=${userData?.remote_key}`
                   )}
                 </span>
                 <button
@@ -274,7 +308,7 @@ const AccountBlock: NextPage = () => {
                   }
                   onClick={() => {
                     handleClipBoardPathByRef(
-                      userData.invite_link,
+                      userData?.invite_link,
                       setIsCopied2,
                       setShowAlert2
                     );
@@ -309,7 +343,7 @@ const AccountBlock: NextPage = () => {
                   </div>
                   <div className="connector-point">
                     <div className="connector-point__text connector-point__text-plus">
-                      + {userData.def_score.score_tg}
+                      + {userData?.def_score.score_tg}
                     </div>
 
                     <div className="connector-point__text">points</div>
@@ -362,7 +396,7 @@ const AccountBlock: NextPage = () => {
                   </div>
                   <div className="connector-point">
                     <div className="connector-point__text connector-point__text-plus">
-                      + {userData.def_score.score_xt}
+                      + {userData?.def_score.score_xt}
                     </div>
                     <div className="connector-point__text">points</div>
                   </div>
@@ -389,9 +423,12 @@ const AccountBlock: NextPage = () => {
                     <div className="connector-success__text">Connected</div>
                   </div>
                 ) : (
-                  <a href={xUrl} className="button ghost w-button">
+                  <button
+                    className="button ghost w-button"
+                    onClick={() => handleXBtn(address, jwt)}
+                  >
                     Connect
-                  </a>
+                  </button>
                 )}
               </div>
               <div
@@ -414,7 +451,7 @@ const AccountBlock: NextPage = () => {
                   </div>
                   <div className="connector-point">
                     <div className="connector-point__text connector-point__text-plus">
-                      + {userData.def_score.score_dicord}
+                      + {userData?.def_score.score_dicord}
                     </div>
                     <div className="connector-point__text">points</div>
                   </div>
@@ -449,7 +486,8 @@ const AccountBlock: NextPage = () => {
                   </a>
                 )}
               </div>
-              <div
+              <GPassport />
+              {/* <div
                 className={
                   userData?.btn_list?.gp
                     ? styles.connector_done + " " + "connector"
@@ -496,14 +534,11 @@ const AccountBlock: NextPage = () => {
                     <div className="connector-success__text">Connected</div>
                   </div>
                 ) : (
-                  <a
-                    href={userData?.discord_link}
-                    className="discord_btn button ghost w-button"
-                  >
+                  <button className="discord_btn button ghost w-button">
                     Connect
-                  </a>
+                  </button>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
           <div className={styles.userRefLink}>

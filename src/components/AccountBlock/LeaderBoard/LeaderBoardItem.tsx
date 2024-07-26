@@ -5,10 +5,9 @@ import { setData } from "../../../stores/userData-store";
 
 interface ILeaderBoardItem {
   item: Leaders;
-  user: string;
 }
 
-const LeaderBoardItem: NextPage<ILeaderBoardItem> = ({ item, user }) => {
+const LeaderBoardItem: NextPage<ILeaderBoardItem> = ({ item }) => {
   const userData = setData((state) => state.data);
 
   return (

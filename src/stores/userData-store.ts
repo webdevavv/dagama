@@ -16,6 +16,12 @@ type fetchData = {
     discord: boolean;
     gp: boolean;
   };
+  def_score: {
+    score_tg: number | string;
+    score_xt: number | string;
+    score_dicord: number | string;
+    score_gp: number | string;
+  };
   discord_link: string;
 };
 

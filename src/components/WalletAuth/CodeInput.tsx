@@ -46,8 +46,11 @@ const CodeInput: React.FC<Props> = ({ initialCode, isConnected, address }) => {
   };
 
   const router = useRouter();
-  const path =
-    "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
+
+  const path = process.env.NEXT_PUBLIC_REQUEST_SERVER_PATH as string;
+
+  // const path =
+  //   "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
 
   const handleBtnAuth = () => {
     if (isConnected && address) {

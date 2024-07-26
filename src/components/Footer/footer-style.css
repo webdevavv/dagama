@@ -10121,12 +10121,6 @@
     padding-bottom: 40px;
   }
 
-  .container {
-    grid-row-gap: 40px;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 24px;
-  }
 
   .container.user-info {
     grid-row-gap: 10px;
@@ -11935,11 +11929,6 @@
   .hero-heading-left {
     padding-top: 20px;
     padding-bottom: 20px;
-  }
-
-  .container {
-    grid-row-gap: 40px;
-    padding: 20px;
   }
 
   .container.user-info {

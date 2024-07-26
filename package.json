@@ -14,7 +14,7 @@
     "@tanstack/react-query": "^5.51.1",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
-    "ethers": "^5.7.2",
+    "ethers": "^6.13.2",
     "next": "^14.2.3",
     "next-image-export-optimizer": "^1.14.1",
     "pino-pretty": "^11.2.1",

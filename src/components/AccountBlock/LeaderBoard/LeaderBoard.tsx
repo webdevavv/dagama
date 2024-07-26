@@ -8,7 +8,7 @@ import LeaderBoardItem from "./LeaderBoardItem";
 interface IWalletAuthProps {
   address: string | undefined;
   jwt: string;
-  user: string;
+  user: string | undefined;
 }
 
 export type Leaders = {
@@ -20,8 +20,10 @@ export type Leaders = {
   me: number;
 };
 
-const path =
-  "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
+const path = process.env.NEXT_PUBLIC_REQUEST_SERVER_PATH as string;
+
+// const path =
+//   "https://devmy.dagama.world/assets/components/dga/conector_jwt.php";
 
 const LeaderBoard: NextPage<IWalletAuthProps> = ({ address, jwt, user }) => {
   const fetchUserDataLeaders = async () => {
@@ -106,7 +108,7 @@ const LeaderBoard: NextPage<IWalletAuthProps> = ({ address, jwt, user }) => {
       </div>
       <div className={styles.leaderBoardTable__items}>
         {leaders.map((item: Leaders) => (
-          <LeaderBoardItem key={item.user_id} item={item} user={user} />
+          <LeaderBoardItem key={item.user_id} item={item} />
         ))}
       </div>
     </div>

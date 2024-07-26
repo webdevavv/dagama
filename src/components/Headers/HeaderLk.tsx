@@ -3,10 +3,25 @@ import styles from "../../styles/Home.module.scss";
 import { HeaderLkConnectButton } from "../CustomConnectButtons/HeaderLkConnectButton";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Burger from "./Burger";
+import { useEffect, useState } from "react";
 
 const Header: NextPage = () => {
-  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+    const body = document.getElementsByTagName("body")[0];
+    body.classList.remove("no-scroll");
+  }, [pathname]);
+
+  const handleBurgerBtn = () => {
+    setIsOpen(!isOpen);
+    const body = document.getElementsByTagName("body")[0];
+    body.classList.toggle("no-scroll");
+  };
 
   return (
     <header>
@@ -99,10 +114,20 @@ const Header: NextPage = () => {
             <p>dagama NFT</p>
           </Link>
         </nav>
-        <div className="d-flex align-self-center align-items-center justify-content-end">
+        <div className={styles.LkButton}>
           <HeaderLkConnectButton />
         </div>
+        <div className={styles.burger} onClick={handleBurgerBtn}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
+      <div
+        className={isOpen ? styles.core : styles.core + " " + styles.core_hide}
+        onClick={handleBurgerBtn}
+      ></div>
+      <Burger isOpen={isOpen} />
     </header>
   );
 };

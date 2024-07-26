@@ -40,6 +40,7 @@
   &__info {
     display: flex;
     flex-direction: column;
+    gap: 5px;
     &_name {
       display: flex;
       align-items: center;
@@ -47,19 +48,31 @@
       color: #fff;
       font-size: 24px;
       font-weight: 700;
+      line-height: 20px;
       @media (max-width: 768px) {
         font-size: 16px;
+      }
+      div {
+        margin-top: 3px;
+        display: flex;
+        align-items: center;
+        &:empty {
+          display: none;
+        }
       }
       span {
         border-radius: 8px;
         background: #00f87a;
-        padding: 2px 6px;
+        padding: 5px 8px 2px;
+        display: inline-block;
+        line-height: 16px;
         color: #051323;
         font-size: 16px;
         font-weight: 700;
         text-transform: uppercase;
         @media (max-width: 768px) {
           font-size: 14px;
+          padding: 3px 6px 1px;
         }
         &.not {
           background-color: #f80000;
@@ -185,7 +198,7 @@
     }
   }
   &__table {
-    min-width: 350px;
+    min-width: 587px;
     padding: 20px;
     border-radius: 8px;
     border: 1px solid #45505d;
@@ -197,7 +210,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    @media (max-width: 576px) {
+    @media (max-width: 670px) {
       min-width: 100%;
       width: 100%;
     }
@@ -240,7 +253,10 @@
         font-size: 24px;
         font-weight: 600;
         span {
+          display: block;
           color: #00f87a;
+          max-width: 370px;
+          width: 100%;
         }
         @media (max-width: 768px) {
           font-size: 16px;
@@ -575,7 +591,7 @@
         .tags {
           display: flex;
           flex-wrap: wrap;
-          justify-content: space-between;
+          justify-content: center;
           gap: 24px;
           > span {
             border-radius: 8px;
